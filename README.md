@@ -1,3 +1,34 @@
+# Library Wizard app [React/Redux]
+
+![library-wizard-app-thumb](https://user-images.githubusercontent.com/31347233/64336533-85249500-cfdd-11e9-95fd-ecd463abb4a3.jpg)
+![library-wizard-app-thumb](https://user-images.githubusercontent.com/31347233/64336534-85249500-cfdd-11e9-86d8-2df49850af6b.jpg)
+![library-wizard-app-thumb](https://user-images.githubusercontent.com/31347233/64336535-85249500-cfdd-11e9-94cb-9e8ffe807d27.jpg)
+![library-wizard-app-thumb](https://user-images.githubusercontent.com/31347233/64336536-85bd2b80-cfdd-11e9-8bbb-a8232ef581bb.jpg)
+![library-wizard-app-thumb](https://user-images.githubusercontent.com/31347233/64336532-85249500-cfdd-11e9-866c-7d1814f51822.jpg)
+
+## Project Objectives
+
+- wizard configuration is based on existing genre data provided in separate JSON file
+- wizard can have a maximum of 4 steps:
+  1. genre
+  2. subgenre
+  3. add subgenre
+  4. information
+- number of steps should change dynamically based on user action
+- steps indicator should display only the available steps
+- initially there are three steps
+- fourth step is added if user decides to add a new genre
+- user is allowed to advance to next step only if genre/subgenre is selected or form data is entered
+- form data should be submitted by logging data to console
+- user can always navigate back to any of the wizard steps
+- the last step button should always have a complete flow instead of next step label
+- description field in info form is required only if corresponding status is marked true:
+  "isDescriptionRequired": true
+- after book data is logged to console, wizard should be able to restart
+- Redux should be used for state management
+- responsive design
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

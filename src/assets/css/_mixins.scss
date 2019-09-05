@@ -1,0 +1,129 @@
+@mixin appearance($appearance) {
+  appearance: $appearance;
+  -webkit-appearance: $appearance;
+  -moz-appearance: $appearance;
+}
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+}
+
+@mixin box-shadow($shadowz...) {
+  box-shadow: $shadowz;
+  -webkit-box-shadow: $shadowz;
+  -moz-box-shadow: $shadowz;
+}
+
+@mixin transition($animate) {
+  -webkit-transition: $animate;
+  -moz-transition: $animate;
+  transition: $animate;
+}
+
+@mixin box-sizing($box-size) {
+  box-sizing: $box-size;
+  -webkit-box-sizing: $box-size;
+  -moz-box-sizing: $box-size;
+}
+
+@mixin transform($tranform) {
+  transform: $tranform;
+  -ms-transform: $tranform;
+  -webkit-transform: $tranform;
+  -moz-transform: $tranform;
+}
+
+@mixin transform-origin($transform-origin) {
+  -webkit-transform-origin: $transform-origin;
+  -ms-transform-origin: $transform-origin;
+  transform-origin: $transform-origin;
+}
+
+@mixin user-select($var) {
+  -webkit-user-select: $var;
+  -moz-user-select: $var;
+  -ms-user-select: $var;
+  -o-user-select: $var;
+  user-select: $var;
+}
+
+@mixin animation($animate...) {
+  $max: length($animate);
+  $animations: '';
+
+  @for $i from 1 through $max {
+    $animations: #{$animations + nth($animate, $i)};
+
+    @if $i < $max {
+      $animations: #{$animations + ", "};
+    }
+  }
+  -webkit-animation: $animations;
+  -moz-animation:    $animations;
+  -o-animation:      $animations;
+  animation:         $animations;
+}
+
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+
+@mixin translate($x, $y) {
+  -webkit-transform: translate($x, $y);
+  -moz-transform: translate($x, $y);
+  -ms-transform: translate($x, $y);
+  -o-transform: translate($x, $y);
+  transform: translate($x, $y);
+}
+
+@mixin translate3d($x, $y, $z) {
+  -webkit-transform: translate3d($x, $y, $z);
+  -moz-transform: translate3d($x, $y, $z);
+  -o-transform: translate3d($x, $y, $z);
+  transform: translate3d($x, $y, $z);
+}
+
+@mixin rotate($deg) {
+  -webkit-transform: rotate($deg);
+  -moz-transform: rotate($deg);
+  -o-transform: rotate($deg);
+  writing-mode: lr-tb;
+}
+
+@mixin hover-focus {
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+@mixin linear-gradient($angle, $colorStart, $colorStop){
+  background: #{$colorStart};
+  background: -moz-linear-gradient($angle,  #{$colorStart} 0%, #{$colorStop} 100%);
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#{$colorStart}), color-stop(100%,#{$colorStop}));
+  background: -webkit-linear-gradient(45deg,  #{$colorStart} 0%,#{$colorStop} 100%);
+  background: -o-linear-gradient(45deg,  #{$colorStart} 0%,#{$colorStop} 100%);
+  background: -ms-linear-gradient(45deg,  #{$colorStart} 0%,#{$colorStop} 100%);
+  background: linear-gradient(45deg,  #{$colorStart} 0%,#{$colorStop} 100%);
+}
+
+@mixin bs-placeholder {
+  .form-control::-webkit-input-placeholder {@content};
+  .form-control:-moz-placeholder {@content};
+  .form-control::-moz-placeholder {@content};
+  .form-control:-ms-input-placeholder {@content};
+}

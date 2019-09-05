@@ -1,0 +1,219 @@
+@import
+  "_variables.scss",
+  "_mixins.scss";
+
+.card {
+  background-color: $pale;
+  margin: 80px 0;
+  padding: 0 1.25rem 1.25rem;
+
+  &-header {
+    background-color: $pale-accent;
+    border-bottom: none;
+    margin: 0 -1.25rem 1.25rem;
+  }
+}
+
+.btn {
+  padding: 0.45rem 2.5rem;
+
+  svg {
+    margin: -2px 20px 0 -30px;
+
+    path {
+      fill: $gray-dark;
+    }
+  }
+
+  &:not([disabled]):hover svg {
+    @include animation(shake 2.4s cubic-bezier(0.18, 0.035, 0.095, 0.475) infinite);
+
+    path {
+      fill: $white;
+    }
+  }
+
+  &-buttons {
+    margin-top: 2rem;
+    text-align: right;
+  }
+
+  &-wrapper {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin: 2.5rem 0;
+  }
+
+  &-sm {
+    padding: 0.35rem 2.5rem;
+  }
+
+  &:focus {
+    @include box-shadow(none);
+  }
+
+  &:hover {
+  @include transition(all 0.25s ease-in-out);
+  }
+}
+
+.bs-stepper {
+  &-header {
+    align-items: flex-start;
+  }
+
+  .step-trigger {
+    flex-direction: column;
+
+    &:hover {
+      background-color: #fff;
+      color: $gray-dark;
+      text-decoration: none;
+      @include transition(all 0.25s ease-in-out);
+    }
+  }
+
+  &-content {
+    padding: 1rem 0 0;
+  }
+
+  &-label {
+    font-size: 0.8rem;
+    line-height: 1.2;
+    margin: 0.2rem;
+  }
+
+  &-circle {
+    background-color: $gray-light;
+    @include border-radius(2em);
+    color: $gray;
+    height: 2.5em;
+    margin: 0.2rem;
+    padding: 0.75em 0;
+    width: 2.5em;
+  }
+
+  .step-trigger {
+    color: $gray-medium;
+
+    &:focus {
+      color: $gray-dark;
+    }
+  }
+}
+
+.active .bs-stepper-circle {
+  background-color: $gray-dark;
+  color: $white;
+}
+
+form,
+.form-control {
+  font-size: 0.9rem;
+}
+
+.form-group select {
+  color: #cdcdcd;
+
+  &:valid {
+    color: #495057;
+  }
+}
+
+@include bs-placeholder {
+  color: #cdcdcd;
+}
+
+.react-datepicker-wrapper {
+  display: block;
+}
+
+.modal {
+  &-content {
+    background-color: $pale-accent;
+  }
+
+  &-backdrop {
+    background-color: $white;
+    @include transition(opacity 0.5s ease-in-out);
+
+    &.show {
+      opacity: 1;
+    }
+  }
+
+  &-circle {
+    background-color: $gray-light;
+    display: flex;
+    height: 140px;
+    margin: 4rem auto 1.5rem;
+    width: 140px;
+  }
+
+  .btn {
+    margin: 1.5rem auto 3.5rem;
+    max-width: 320px;
+    padding: 0.35rem 12%;
+  }
+}
+
+@include keyframes(shake) {
+  5%, 45% {
+    @include transform(translate(-1px, 0));
+  }
+
+  10%, 40% {
+    @include transform(translate(2px, 0));
+  }
+
+  15%, 25%, 35% {
+    @include transform(translate(-2px, 0));
+  }
+
+  20%, 30% {
+    @include transform(translate(6px, 0));
+  }
+}
+
+@media (max-width: 767px) {
+  .btn-wrapper {
+    grid-template-columns: 1fr 1fr;
+    margin-top: 1em;
+  }
+
+  .bs-stepper {
+    .step-trigger {
+      padding: 10px;
+    }
+
+    &-circle {
+      height: 2em;
+      padding: 0.5em 0;
+      width: 2em;
+    }
+
+    &-label {
+      max-width: 70px;
+      white-space: normal;
+    }
+  }
+}
+
+@media (max-width: 460px) {
+  .btn-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .bs-stepper {
+    .step-trigger {
+      padding: 0;
+    }
+
+    &-label {
+      font-size: 0.7rem;
+      max-width: 60px;
+      white-space: normal;
+    }
+  }
+}
