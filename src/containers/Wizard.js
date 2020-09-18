@@ -14,8 +14,13 @@ import InfoModal from '../components/layout/InfoModal';
 import * as actionTypes from '../store/actions';
 
 class Wizard extends Component {
+  constructor() {
+    super();
+    this.stepperRef = React.createRef();
+  }
+
   componentDidMount() {
-    this.stepper = new Stepper(document.querySelector('#stepper'), {
+    this.stepper = new Stepper(this.stepperRef.current, {
       linear: false,
       animation: true
     });
@@ -68,64 +73,64 @@ class Wizard extends Component {
           <Card.Header>
             <CardHeader />
           </Card.Header>
-          <div id="stepper" className="bs-stepper">
+          <div id="stepper" ref={this.stepperRef} className="bs-stepper">
             <div className="bs-stepper-header">
-              <StepSelector 
-                target="genres" 
-                stepNo="1" 
+              <StepSelector
+                target="genres"
+                stepNo="1"
                 stepName="Genre" />
               <div className="line"></div>
-              <StepSelector 
-                target="subgenres" 
-                stepNo="2" 
-                stepName="Subgenre" 
+              <StepSelector
+                target="subgenres"
+                stepNo="2"
+                stepName="Subgenre"
                 disabled={this.props.genre === null} />
               <div className={"line" + (this.props.nextStep === 3 ? "" : " d-none")}></div>
-              <StepSelector 
-                className={this.props.nextStep === 3 ? "" : " d-none"} 
-                target="new-subgenre" 
-                stepNo="3" 
-                stepName="Add new subgenre" 
-                disabled={this.props.newSubgenre === null && this.props.buttonText !== 4} />
+              <StepSelector
+                className={this.props.nextStep === 3 ? "" : " d-none"}
+                target="new-subgenre"
+                stepNo="3"
+                stepName="Add new subgenre"
+                disabled={!this.props.newSubgenre && this.props.buttonText !== 4} />
               <div className="line"></div>
-              <StepSelector 
-                target="information" 
-                stepNo={this.props.buttonText} 
-                stepName="Information" 
-                disabled={this.props.subgenre === null} />
+              <StepSelector
+                target="information"
+                stepNo={this.props.buttonText}
+                stepName="Information"
+                disabled={!this.props.subgenre} />
             </div>
             <div className="bs-stepper-content">
-              <GenresContent 
-                id="genres" 
-                data={genreData} 
-                handleSelect={this.props.onSelectGenre.bind(this)} 
-                stepClick={this.stepper} 
-                backDisabled={true} 
+              <GenresContent
+                id="genres"
+                data={genreData}
+                handleSelect={this.props.onSelectGenre.bind(this)}
+                stepClick={this.stepper}
+                backDisabled={true}
                 nextDisabled={this.props.genre === null} />
-              <GenresContent 
-                id="subgenres" 
-                data={this.props} 
-                handleSelect={this.props.onSubgenreSelect.bind(this)} 
-                handleSelectAdd={this.props.onAddSubgenreSelect.bind(this)} 
-                stepClick={this.stepper} 
-                backDisabled={false} 
-                nextClick={this.handleNextButtonClick.bind(this)} 
+              <GenresContent
+                id="subgenres"
+                data={this.props}
+                handleSelect={this.props.onSubgenreSelect.bind(this)}
+                handleSelectAdd={this.props.onAddSubgenreSelect.bind(this)}
+                stepClick={this.stepper}
+                backDisabled={false}
+                nextClick={this.handleNextButtonClick.bind(this)}
                 nextDisabled={this.props.subgenre === null && this.props.newSubgenre == null && this.props.buttonText !== 4} />
-              <NewSubgenreForm 
-                ref={node => {this.subgenreForm = node}} 
-                state={this.props} 
-                handleChange={this.props.onSubgenreFormChange.bind(this)} 
-                handleSubmit={this.handleSubgenreFormSubmit.bind(this)} 
-                stepClick={this.stepper} 
-                nextDisabled={this.props.newSubgenre === null || this.props.newSubgenre.name === ""} 
-                backDisabled={false} 
+              <NewSubgenreForm
+                ref={node => {this.subgenreForm = node}}
+                state={this.props}
+                handleChange={this.props.onSubgenreFormChange.bind(this)}
+                handleSubmit={this.handleSubgenreFormSubmit.bind(this)}
+                stepClick={this.stepper}
+                nextDisabled={this.props.newSubgenre === null || this.props.newSubgenre.name === ""}
+                backDisabled={false}
                 nextClick={this.handleNextButtonClick.bind(this)} />
-              <NewBookForm 
-                ref={node => {this.newBookForm = node}} 
-                selectedDate={this.props.selectedDate} 
-                state={this.props} 
-                handleSubmit={this.handleNewBookFormSubmit.bind(this)} 
-                handleSelectDate={this.props.onSelectDate.bind(this)} 
+              <NewBookForm
+                ref={node => {this.newBookForm = node}}
+                selectedDate={this.props.selectedDate}
+                state={this.props}
+                handleSubmit={this.handleNewBookFormSubmit.bind(this)}
+                handleSelectDate={this.props.onSelectDate.bind(this)}
                 stepClick={this.stepper} />
             </div>
           </div>

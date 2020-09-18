@@ -6,15 +6,16 @@ import formData from '../../lib/constants/InfoForm';
 
 class NewBookForm extends Component {
   render(){
-    return(
+    return (
       <div id="information" className="content">
         <Form onSubmit={this.props.handleSubmit} ref={node => {this.form = node}}>
           <Form.Group controlId="title">
             <Form.Label>Book title</Form.Label>
-            <Form.Control 
-              required 
-              type="text" 
-              placeholder="Book title" />
+            <Form.Control
+              required
+              type="text"
+              placeholder="Book title"
+            />
           </Form.Group>
           <Form.Group controlId="author">
             <Form.Label>Author</Form.Label>
@@ -25,10 +26,11 @@ class NewBookForm extends Component {
           </Form.Group>
           <Form.Group controlId="isbn">
             <Form.Label>ISBN</Form.Label>
-            <Form.Control 
-              required 
-              type="number" 
-              placeholder="ISBN" />
+            <Form.Control
+              required
+              type="number"
+              placeholder="ISBN"
+            />
           </Form.Group>
           <Form.Group controlId="publisher">
             <Form.Label>Publisher</Form.Label>
@@ -40,23 +42,25 @@ class NewBookForm extends Component {
           <Form.Row>
             <Form.Group as={Col} md="2" controlId="date">
               <Form.Label>Date published</Form.Label>
-              <DatePicker 
-                required 
-                id="date" 
-                className="form-control" 
-                selected={this.props.selectedDate} 
-                onChange={date => this.props.handleSelectDate(date)} 
-                dateFormat={formData.DATE_FORMAT} 
-                placeholderText="DD/MM/YYYY" />
+              <DatePicker
+                required
+                id="date"
+                className="form-control"
+                selected={this.props.selectedDate}
+                onChange={date => this.props.handleSelectDate(date)}
+                dateFormat={formData.DATE_FORMAT}
+                placeholderText="DD/MM/YYYY"
+              />
             </Form.Group>
           </Form.Row>
           <Form.Row>
             <Form.Group as={Col} md="2" controlId="pages">
               <Form.Label>Number of pages</Form.Label>
-              <Form.Control 
-                required 
-                type="number" 
-                placeholder="Number of pages" />
+              <Form.Control
+                required
+                type="number"
+                placeholder="Number of pages"
+              />
             </Form.Group>
           </Form.Row>
           <Form.Row>
@@ -71,10 +75,11 @@ class NewBookForm extends Component {
           <Form.Row>
           <Form.Group as={Col} md="3" controlId="edition">
             <Form.Label>Edition</Form.Label>
-            <Form.Control 
-              required 
-              type="text" 
-              placeholder="Edition" />
+            <Form.Control
+              required
+              type="text"
+              placeholder="Edition"
+            />
             </Form.Group>
             <Form.Group as={Col} md="3" controlId="language">
               <Form.Label>Edition language</Form.Label>
@@ -86,16 +91,18 @@ class NewBookForm extends Component {
           </Form.Row>
           <Form.Group controlId="description">
             <Form.Label>Description</Form.Label>
-            <Form.Control 
-              required = {this.props.state.descriptionRequired} 
-              as="textarea" 
-              rows="2" 
-              placeholder="Type the description..." />
+            <Form.Control
+              required = {this.props.state.descriptionRequired}
+              as="textarea"
+              rows="2"
+              placeholder="Type the description..."
+            />
           </Form.Group>
-          <NavButtons 
-            stepClick={this.props.stepClick} 
-            backClickHandler={() => this.props.stepClick.to(this.props.nextStep === 3 ? 3 : 2)} 
-            add={true} />
+          <NavButtons
+            stepClick={this.props.stepClick}
+            backClickHandler={() => this.props.stepClick.to(this.props.nextStep === 3 ? 3 : 2)}
+            add={true}
+          />
         </Form>
       </div>
     );
