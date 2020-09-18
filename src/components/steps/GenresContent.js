@@ -1,28 +1,38 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button } from 'react-bootstrap';
 import NavButtons from '../layout/NavButtons';
 
-class StepContent extends Component {
-  render(){
-    return(
-      <div id={this.props.id} className="content">
-        <div className="btn-wrapper">
-          { this.props.data[this.props.id].map(genre => 
-            <Button key={genre.id} variant="outline-secondary" onClick={event => this.props.handleSelect(event, genre.id)}>{ genre.name }</Button>
-          )}
-          { this.props.id === "subgenres" ? 
-            <Button variant="outline-secondary" onClick={event => this.props.handleSelectAdd(event)}>Add new</Button> : null
-          }
-        </div>
-        <NavButtons 
-          id={this.props.id} 
-          stepClick={this.props.stepClick} 
-          nextClickHandler={this.props.id === "subgenres" ? this.props.nextClick : null} 
-          backDisabled={this.props.backDisabled} 
-          nextDisabled={this.props.nextDisabled} />
+const StepContent = (props) => {
+  const {
+    id,
+    data,
+    handleSelect,
+    handleSelectAdd,
+    stepClick,
+    nextClick,
+    backDisabled,
+    nextDisabled
+  } = props;
+
+  return(
+    <div id={id} className="content">
+      <div className="btn-wrapper">
+        { data[id].map(genre =>
+          <Button key={genre.id} variant="outline-secondary" onClick={event => handleSelect(event, genre.id)}>{ genre.name }</Button>
+        )}
+        { id === "subgenres" ?
+          <Button variant="outline-secondary" onClick={event => handleSelectAdd(event)}>Add new</Button> : null
+        }
       </div>
-    );
-  }
+      <NavButtons
+        id={id}
+        stepClick={stepClick}
+        nextClickHandler={id === "subgenres" ? nextClick : null}
+        backDisabled={backDisabled}
+        nextDisabled={nextDisabled}
+      />
+    </div>
+  );
 }
 
 export default StepContent;
